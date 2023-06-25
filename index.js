@@ -1,12 +1,16 @@
-let n = 10;
+const mysql = require('mysql2');
 
-nextPrime:
-for (let i = 2; i <= n; i++) { // Для всех i...
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'homework'
+})
 
-  for (let j = 2; j < i; j++) { // проверить, делится ли число..
-    if (i % j == 0) continue nextPrime; // не подходит, берём следующее
+connection.query('SELECT * FROM authors;', (err, result) => {
+  if(err) {
+    throw err;
   }
 
- console.log( i ); // простое число
-}
-
+  console.log(result);
+})
